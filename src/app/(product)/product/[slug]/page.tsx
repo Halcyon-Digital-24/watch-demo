@@ -597,7 +597,7 @@ const PageDetails = ({ params: { slug } }: Props) => {
                           </div>
                         )}
                     </div>
-                    {productPrice > 5000 && (
+                    {(productPrice as number) > 5000 && (
                       <div className="e-emi">
                         <h3 className=" font-gotham font-medium text-sm primary-text py-3 cursor-pointer">
                           <span
