@@ -8,6 +8,12 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
+        protocol: "http",
+        hostname: "204.152.197.183",
+        port: "3001",
+        pathname: "/**",
+      },
+      {
         protocol: "https",
         hostname: "gazihomeappliances.com",
         port: "",
