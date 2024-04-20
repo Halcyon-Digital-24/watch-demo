@@ -20,6 +20,12 @@ const nextConfig = {
         pathname: "/**",
       },
       {
+        protocol: "https",
+        hostname: "halcyonecom.xyz",
+        port: "",
+        pathname: "/**",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
         port: "5000",
