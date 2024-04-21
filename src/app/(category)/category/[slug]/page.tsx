@@ -237,14 +237,18 @@ function Category() {
     }
   };
 
-  let timeOutId: any = 0;
+  // let timeOutId: any = 0;
   useEffect(() => {
-    if (timeOutId === 0) {
+    /* if (timeOutId === 0) {
       timeOutId = setTimeout(() => {
         fetchData();
       }, 1000);
       return () => clearTimeout(timeOutId);
-    }
+    } */
+    const loadData = async () => {
+      await fetchData();
+    };
+    loadData();
   }, [
     limit,
     page,
