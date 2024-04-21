@@ -133,7 +133,7 @@ function Category() {
     setPage(1);
   }, [searchParams.get("category")]);
 
-  const fetchData = async () => {
+  /*  const fetchData = async () => {
     setIsLoading(true);
     const search: string = searchParams.get("search")?.trim() || "";
     const mainCategory: string = searchParams.get("category")?.trim() || "";
@@ -175,6 +175,58 @@ function Category() {
         }
         ${sort_by !== "" ? "&sort_by=" + sort_by : ""}
         ${availability !== "" ? "&availability=" + availability : ""}`
+      );
+      setProducts(response.data?.data?.rows);
+      setCount(response.data?.data?.count);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setIsLoading(false);
+    }
+  }; */
+  const fetchData = async () => {
+    setIsLoading(true);
+    const search: string = searchParams.get("search")?.trim() || "";
+    const mainCategory: string = searchParams.get("category")?.trim() || "";
+    const availability: string =
+      (availabilities.length > 0 && availabilities.join(",")) || "";
+    let sort_by: string = "";
+    switch (sortBy) {
+      case "Newest":
+        sort_by = "newest";
+        break;
+      case "Oldest":
+        sort_by = "oldest";
+        break;
+      case "Price low to high":
+        sort_by = "low";
+        break;
+      case "Price high to low":
+        sort_by = "high";
+        break;
+    }
+    const tempCategories: string[] =
+      çategories.length > 0 ? [...çategories] : [mainCategory, ...çategories];
+    const category: string =
+      (tempCategories.length > 0 && tempCategories.join(",")) || "";
+    try {
+      console.log(page);
+      const response = await axios.get<IProductResponse>(
+        `${API_URL}/frontend/products?limit=${limit}&page=${page}` +
+          `${category !== "" ? "&category=" + category : ""}` +
+          `${search !== "" ? "&search=" + search : ""}` +
+          `${
+            priceRange[0] > 0 || priceRange[1] < 200000
+              ? "&min_price=" + priceRange[0]
+              : ""
+          }` +
+          `${
+            priceRange[0] > 0 || priceRange[1] < 200000
+              ? "&max_price=" + priceRange[1]
+              : ""
+          }` +
+          `${sort_by !== "" ? "&sort_by=" + sort_by : ""}` +
+          `${availability !== "" ? "&availability=" + availability : ""}`
       );
       setProducts(response.data?.data?.rows);
       setCount(response.data?.data?.count);
