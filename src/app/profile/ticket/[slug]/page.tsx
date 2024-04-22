@@ -13,6 +13,7 @@ import "../../page.scss";
 const ViewTicket = () => {
   const route = useRouter();
   const param = useParams();
+  const [descError, setDescError] = useState("");
   const { login } = useAppSelector((state) => state.login);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [messages, setMessages] = useState<any[]>([]);
@@ -53,7 +54,11 @@ const ViewTicket = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if (!details.trim()) {
+      setDescError("Replay message is required");
+    }
     if (details?.trim() !== "" && login?.user?.id && param?.slug) {
+      setDescError("");
       try {
         const formData = new FormData();
         formData.append("subject", "");
@@ -132,7 +137,11 @@ const ViewTicket = () => {
                     value={details}
                     onChange={(e: any) => setDetails(e.target.value)}
                   ></textarea>
-
+                  {descError && (
+                    <p className=" font-gotham text-[11px] warning">
+                      {descError}
+                    </p>
+                  )}
                   <FormGroup
                     className="mt-2 "
                     type="file"
