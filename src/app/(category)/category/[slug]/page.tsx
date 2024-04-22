@@ -12,7 +12,7 @@ const Pagination = dynamic(() => import("@/components/pagination"));
 import { API_ROOT, API_URL } from "@/constant";
 import { IBanner } from "@/types/banner";
 import { ICategoryData, ICategoryResponse } from "@/types/category";
-import { IProduct, IProductResponse } from "@/types/product";
+import { ICategoryProductResponse, IProduct } from "@/types/product";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -211,7 +211,7 @@ function Category() {
       (tempCategories.length > 0 && tempCategories.join(",")) || "";
     try {
       console.log(page);
-      const response = await axios.get<IProductResponse>(
+      const response = await axios.get<ICategoryProductResponse>(
         `${API_URL}/frontend/products?limit=${limit}&page=${page}` +
           `${category !== "" ? "&category=" + category : ""}` +
           `${search !== "" ? "&search=" + search : ""}` +
@@ -228,8 +228,8 @@ function Category() {
           `${sort_by !== "" ? "&sort_by=" + sort_by : ""}` +
           `${availability !== "" ? "&availability=" + availability : ""}`
       );
-      setProducts(response.data?.data?.rows);
-      setCount(response.data?.data?.count);
+      setProducts(response?.data?.rows);
+      setCount(response.data?.count);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -258,7 +258,7 @@ function Category() {
     sortBy,
     availabilities,
   ]);
-
+  console.log(products);
   const handleMultipleCategory = (title: string, removeUnselected: boolean) => {
     if (removeUnselected) {
       setCategories((prevState) =>
