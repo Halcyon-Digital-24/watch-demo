@@ -1,15 +1,15 @@
-'use client';
-import ProfileSidebar from '@/components/profile-sidebar';
-import '../page.scss';
-import './page.scss';
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import Button from '@/components/button';
-import { useRouter } from 'next/navigation';
-import { useAppSelector } from '@/redux/hooks';
-import { FaBars } from 'react-icons/fa6';
-import { formatDate } from '@/components/dateformate';
-import axiosInstance from '../../../../utils/axiosInstance';
+"use client";
+import ProfileSidebar from "@/components/profile-sidebar";
+import "../page.scss";
+import "./page.scss";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import Button from "@/components/button";
+import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/redux/hooks";
+import { FaBars } from "react-icons/fa6";
+import { formatDate } from "@/components/dateformate";
+import axiosInstance from "../../../../utils/axiosInstance";
 
 const Ticket = () => {
   const route = useRouter();
@@ -21,7 +21,7 @@ const Ticket = () => {
     if (login?.accessToken) {
       setIsLoggedIn(true);
     } else {
-      route.push('/login');
+      route.push("/login");
     }
   }, [login]);
 
@@ -35,7 +35,7 @@ const Ticket = () => {
             },
           });
           if (response.status === 200) {
-            setTickets(response?.data?.data);
+            setTickets(response?.data?.data?.rows);
           }
         } catch (error) {
           console.log(error);
@@ -60,7 +60,7 @@ const Ticket = () => {
                 </div>
               </div>
               <div className=" col-span-12 md:col-span-9 overflow-x-scroll md:overflow-x-visible">
-                <Link href={'/profile/ticket/create'}>
+                <Link href={"/profile/ticket/create"}>
                   <Button className="px-2 py-1 font-gotham">New Ticket</Button>
                 </Link>
                 <table className="w-full text-sm text-left ticket-table mt-3 ">
