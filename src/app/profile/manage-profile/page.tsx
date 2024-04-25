@@ -82,6 +82,17 @@ const UpdateProfile = () => {
 
   useEffect(() => {
     if (login) {
+      /* const fetchData = async () => {
+        try {
+          const response = await axiosInstance.get(`/users/${login?.user?.id}`);
+          setAddress(response.data.address);
+          setCity(response.data.city);
+          setMobile(response.data.mobile);
+          setName(response.data.name);
+          setEmail(response.data.email);
+        } catch (error) {}
+      };
+      fetchData(); */
       setAddress(login.user.address as string);
       setCity(login.user.city as string);
       setMobile(login.user.mobile as string);
