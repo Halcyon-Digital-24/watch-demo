@@ -127,7 +127,7 @@ const ProductCard: React.FC<IProps> = ({
             href={`/product/${url}`}
             className=" font-gotham product-title font-normal text-center text-sm"
           >
-            {title?.slice(0, 46)}
+            {title?.slice(0, 44)}
           </Link>
         </div>
         <p className=" mb-6 text-center text-sm h-5">
