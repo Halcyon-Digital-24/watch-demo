@@ -13,7 +13,7 @@ const Title: React.FC<IProps> = ({ title, href }) => {
       </h3>
       {href && (
         <Link
-          className="font-gotham font-medium text-xs view primary-text border border-primary  py-1 px-2 mb-[10px] uppercase"
+          className="font-gotham font-medium text-xs view primary-text border primary-border-color  py-1 px-2 mb-[10px] uppercase"
           href={href}
         >
           VIEW ALL
