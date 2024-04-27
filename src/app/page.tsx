@@ -225,6 +225,7 @@ export default async function Home() {
                 alt="ads"
                 width={1300}
                 height={500}
+                quality={100}
               />
             </Link>
           </div>
