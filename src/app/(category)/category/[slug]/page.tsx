@@ -265,7 +265,6 @@ function Category() {
     sortBy,
     availabilities,
   ]);
-  console.log(products);
   const handleMultipleCategory = (title: string, removeUnselected: boolean) => {
     if (removeUnselected) {
       setCategories((prevState) =>
