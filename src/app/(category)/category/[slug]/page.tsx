@@ -210,7 +210,6 @@ function Category() {
     const category: string =
       (tempCategories.length > 0 && tempCategories.join(",")) || "";
     try {
-      console.log(page);
       const response = await axios.get<ICategoryProductResponse>(
         `${API_URL}/frontend/products?limit=${limit}&page=${page}` +
           `${category !== "" ? "&category=" + category : ""}` +
