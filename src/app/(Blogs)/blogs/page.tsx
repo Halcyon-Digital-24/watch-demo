@@ -18,10 +18,10 @@ async function getBlogs(page: number = 1, limit: number = 12) {
 async function adBanner() {
   try {
     const response = await fetch(`${API_URL}/banners/blog`, {
-      // cache: "no-store",
-      next: {
+      cache: "no-store",
+      /*  next: {
         revalidate: 3600,
-      },
+      }, */
     });
     if (!response.ok) {
       throw new Error("Failed to fetch banner blog");

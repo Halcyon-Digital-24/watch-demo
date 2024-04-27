@@ -29,10 +29,10 @@ async function categoryProduct(category_slug: string) {
   const res = await fetch(
     `${API_URL}/frontend/products?page=1&limit=5&category=${category_slug}`,
     {
-      // cache: "no-store",
-      next: {
+      cache: "no-store",
+      /*       next: {
         revalidate: 3600,
-      },
+      }, */
     }
   );
   return res.json();

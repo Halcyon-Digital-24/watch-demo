@@ -29,11 +29,11 @@ const ListCard: FC<IProps> = ({ product }) => {
   const handleEmi = () => setIsEmi(!isEmi);
   const { login } = useAppSelector((state) => state.login);
   const { data: compareItems } = useAppSelector((state) => state.compare);
-  const isCampaign =
+  /*  const isCampaign =
     product.camping_start_date &&
     product.camping_end_date &&
     new Date(product.camping_start_date).getTime() <= Date.now() &&
-    new Date(product.camping_end_date).getTime() >= Date.now();
+    new Date(product.camping_end_date).getTime() >= Date.now(); */
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -161,9 +161,10 @@ const ListCard: FC<IProps> = ({ product }) => {
                 image: product.image,
                 title: product.title,
                 regular_price: Number(product.regular_price),
-                price: isCampaign
-                  ? Number(product.discount_price)
-                  : Number(product.regular_price),
+                price:
+                  Number(product.discount_price) > 0
+                    ? Number(product.discount_price)
+                    : Number(product.regular_price),
                 quantity: 1,
                 rating: Math.round(product?.reviews[0]?.average_rating),
                 availability: product.availability,
@@ -228,7 +229,7 @@ const ListCard: FC<IProps> = ({ product }) => {
         </h3>
         <h4
           className={` font-gotham  ${
-            isCampaign
+            product.discount_price > 0
               ? "text-xs line-through font-normal"
               : "font-medium text-base"
           } black-text`}
@@ -236,12 +237,12 @@ const ListCard: FC<IProps> = ({ product }) => {
           ৳ {FormatPrice(product.regular_price)}
         </h4>
         <div className="flex justify-between flex-wrap items-center">
-          {Number(product.discount_price) > 0 && isCampaign && (
+          {Number(product.discount_price) > 0 && (
             <h3 className=" font-gotham font-medium text-base black-text">
               ৳ {FormatPrice(product.discount_price)}
             </h3>
           )}
-          {product.discount_price > 0 && isCampaign && (
+          {product.discount_price > 0 && (
             <span className=" font-gotham font-normal md:text-xs text-[10px]  px-1 py-[2px] save-text save-money">
               Save ৳{" "}
               {FormatPrice(

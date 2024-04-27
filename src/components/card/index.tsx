@@ -134,14 +134,16 @@ const ProductCard: React.FC<IProps> = ({
           {Number(regular_price) && (
             <span
               className={`mr-3 font-gotham ${
-                isCampaign ? "line-through font-normal " : "font-bold"
+                Number(discount_price) > 0
+                  ? "line-through font-normal "
+                  : "font-bold"
               } text-sm`}
             >
               ৳ {FormatPrice(regular_price)}
             </span>
           )}
 
-          {Number(discount_price) > 0 && isCampaign && (
+          {Number(discount_price) > 0 && (
             <span className=" font-gotham font-bold text-sm">
               ৳ {FormatPrice(discount_price)}
             </span>
@@ -169,7 +171,7 @@ const ProductCard: React.FC<IProps> = ({
                             addToCart({
                               product_id: product_id,
                               price: Number(
-                                Number(discount_price) > 0 && isCampaign
+                                Number(discount_price) > 0
                                   ? discount_price
                                   : regular_price
                               ),
@@ -189,7 +191,7 @@ const ProductCard: React.FC<IProps> = ({
                           handleBuyNow({
                             product_id,
                             price: Number(
-                              Number(discount_price) > 0 && isCampaign
+                              Number(discount_price) > 0
                                 ? discount_price
                                 : regular_price
                             ),

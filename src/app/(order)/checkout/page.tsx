@@ -77,12 +77,12 @@ function Checkout() {
     quantity: item.quantity,
     attribute: item?.attribute,
   }));
-
+  /* 
   const subTotal = cart.reduce(
     (sum: any, item: any) => (sum += item.price * item.quantity),
     0
   );
-
+ */
   const orderData = {
     name,
     email: login?.user?.email ? login?.user?.email : email,
